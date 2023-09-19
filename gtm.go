@@ -584,6 +584,7 @@ func invalidCursor(err error) bool {
 	return false
 }
 
+
 func tailShards(multi *OpCtxMulti, ctx *OpCtx, o *Options, handler ShardInsertHandler) {
 	defer multi.allWg.Done()
 	if o == nil {
