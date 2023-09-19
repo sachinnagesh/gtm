@@ -1,4 +1,4 @@
-module github.com/rwynn/gtm/v2
+module github.com/sachinnagesh/gtm/v2
 
 go 1.15
 
