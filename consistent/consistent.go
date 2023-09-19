@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/BurntSushi/toml"
-	"github.com/rwynn/gtm/v2"
+	"github.com/sachinnagesh/gtm/v2"
 	"github.com/serialx/hashring"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -37,6 +37,7 @@ func ConsistentHashFilterFromFile(name string, configFile string) (gtm.OpFilter,
 // if the operation will be accepted for processing. can be used to distribute work.
 // name:	the name of the worker creating this filter. e.g. "Harry"
 // document:	a map with a string key 'workers' which has a corresponding
+//
 //				slice of string representing the available workers
 func ConsistentHashFilterFromDocument(name string, document map[string]interface{}) (gtm.OpFilter, error) {
 	workers := document["workers"]
