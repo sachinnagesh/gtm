@@ -1347,6 +1347,11 @@ func ConsumeChangeStream(ctx *OpCtx, client *mongo.Client, ns string, o *Options
 			resumeAfter = changeDoc.Id
 			startAt = nil
 			startAfter = nil
+			timeDiff := 1000 - (time.Now().UnixMilli() - time.Unix(int64(changeDoc.Timestamp.T), 0).UnixMilli())
+			if timeDiff > 0 {
+				ctx.log.Printf("Sleeping for %v ms", timeDiff)
+				time.Sleep(time.Millisecond * time.Duration(timeDiff))
+			}
 			oper := changeDoc.mapOperation()
 			token := OpResumeToken{
 				StreamID:    ns,
